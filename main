@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+int userInput, counter,factorCheck = 1;
+int main() {
+  cout << "Enter a number: " << endl;
+  cin >> userInput;
+  counter = userInput;
+  while (counter > 0)
+  {
+    if (userInput%factorCheck == 0)
+    {
+      cout << factorCheck << " times " << userInput/factorCheck << " equals " << userInput << endl;
+    }
+    factorCheck++;
+    counter--;
+  }
+}
