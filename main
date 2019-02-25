@@ -16,15 +16,21 @@ int main(){
     counter++;
   }
 
-  while (counter2 < (factor.size()/2))
+  while (counter2 < factor.size()-1)
   {
     if (factor.size() == 2)
     {
       cout << "The number is prime." << endl;
     }
-    else
+    else if (counter2 < (factor.size()/2))
+    {
       cout << factor[counter2] <<" times " << userInput/factor[counter2] << " equals " << userInput << endl;
-      
+    }
+    else if (factor[counter2]*factor[counter2] == userInput) //checks for perfect square factor
+    {
+      cout << factor[counter2] <<" times " << userInput/factor[counter2] << " equals " << userInput << endl;
+    }
     counter2++;
   }
+
 }
