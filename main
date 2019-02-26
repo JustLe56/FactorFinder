@@ -2,35 +2,89 @@
 #include <vector>
 using namespace std;
 vector<int> factor;
-int userInput,counter,counter2 = 0;
+int userInput,counter = 0,factorCheck = 1,counter2 = 0;
+char orderLargeFirst;
+bool hasRun = false;
 int main(){
-  cout << "Enter a value: ";
-  cin >> userInput;
-  counter = userInput;
-  while (counter > 0)
+  cout << "Would you like to see the largest factors first? (y/n) (q to quit) " << endl;
+  cin >> orderLargeFirst;
+  while (hasRun == false )
   {
-    if(userInput%counter == 0)
+    if (orderLargeFirst == 'y')
     {
-      factor.push_back(counter);
+      hasRun = true;
+      cout << "Enter a value: ";
+      cin >> userInput;
+      counter = userInput;
+      while (counter > 0)
+      {
+        if(userInput%counter == 0)
+        {
+          factor.push_back(counter);
+        }
+        counter--;
+      }
+      while (counter2 < factor.size()-1)
+      {
+        if (factor.size() == 2)
+        {
+          cout << "The number is prime." << endl;
+        }
+        else if (counter2 < (factor.size()/2))
+        {
+          cout << factor[counter2] <<" times " << userInput/factor[counter2] << " equals " << userInput << endl;
+        }
+        else if (factor[counter2]*factor[counter2] == userInput) //checks for perfect square factor
+        {
+          cout << factor[counter2] <<" times " << userInput/factor[counter2] << " equals " << userInput << endl;
+        }
+        counter2++;
+      }
     }
-    counter--;
-  }
+    else if (orderLargeFirst == 'n')
+    {
+      hasRun = true;
+      cout << "Enter a value: ";
+      cin >> userInput;
+      while (counter < userInput)
+      {
+        if(userInput%factorCheck == 0)
+        {
+          factor.push_back(factorCheck);
+        }
+        factorCheck++;
+        counter++;
+      }
 
-  while (counter2 < factor.size()-1)
-  {
-    if (factor.size() == 2)
-    {
-      cout << "The number is prime." << endl;
+      while (counter2 < factor.size()-1)
+      {
+        if (factor.size() == 2)
+        {
+          cout << "The number is prime." << endl;
+        }
+        else if (counter2 < (factor.size()/2))
+        {
+          cout << factor[counter2] <<" times " << userInput/factor[counter2] << " equals " << userInput << endl;
+        }
+        else if (factor[counter2]*factor[counter2] == userInput) //checks for perfect square factor
+        {
+          cout << factor[counter2] <<" times " << userInput/factor[counter2] << " equals " << userInput << endl;
+        }
+        counter2++;
+      }
     }
-    else if (counter2 < (factor.size()/2))
+    else if (orderLargeFirst == 'q')
     {
-      cout << factor[counter2] <<" times " << userInput/factor[counter2] << " equals " << userInput << endl;
+      cout << "Quitting now..." << endl;
+      break;
     }
-    else if (factor[counter2]*factor[counter2] == userInput) //checks for perfect square factor
-    {
-      cout << factor[counter2] <<" times " << userInput/factor[counter2] << " equals " << userInput << endl;
+    else{
+      cout << "ERROR: You did not enter either \"y\" or \"n\"." << endl;
+      cout << "Restarting..." << endl;
+      cout << "Would you like to see the largest factors first? (y/n) (q to quit)" << endl;
+      cin >> orderLargeFirst;
     }
-    counter2++;
   }
+  
 
 }
