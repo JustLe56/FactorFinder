@@ -2,18 +2,18 @@
 #include <vector>
 using namespace std;
 vector<int> factor;
-int userInput,counter = 0,factorCheck = 1,counter2 = 0;
+int userInput,counter,counter2 = 0;
 int main(){
   cout << "Enter a value: ";
   cin >> userInput;
-  while (counter < userInput)
+  counter = userInput;
+  while (counter > 0)
   {
-    if(userInput%factorCheck == 0)
+    if(userInput%counter == 0)
     {
-      factor.push_back(factorCheck);
+      factor.push_back(counter);
     }
-    factorCheck++;
-    counter++;
+    counter--;
   }
 
   while (counter2 < factor.size()-1)
